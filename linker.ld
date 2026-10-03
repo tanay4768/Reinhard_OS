@@ -1,35 +1,35 @@
+/* Akira OS linker script: kernel is loaded at 1 MiB. */
 
 ENTRY(_start)
 
 SECTIONS
 {
+    . = 1M;
+    kernel_start = .;
 
-	. = 2M;
+    /* The Multiboot header must be within the first 8 KiB of the image. */
+    .text : ALIGN(4K)
+    {
+        *(.multiboot)
+        *(.text)
+    }
 
+    .rodata : ALIGN(4K)
+    {
+        *(.rodata)
+    }
 
-	.text BLOCK(4K) : ALIGN(4K)
-	{
-		*(.multiboot)
-		*(.text)
-	}
+    .data : ALIGN(4K)
+    {
+        *(.data)
+    }
 
-	/* Read-only data. */
-	.rodata BLOCK(4K) : ALIGN(4K)
-	{
-		*(.rodata)
-	}
+    .bss : ALIGN(4K)
+    {
+        *(COMMON)
+        *(.bss)
+    }
 
-	/* Read-write data (initialized) */
-	.data BLOCK(4K) : ALIGN(4K)
-	{
-		*(.data)
-	}
-
-	/* Read-write data (uninitialized) and stack */
-	.bss BLOCK(4K) : ALIGN(4K)
-	{
-		*(COMMON)
-		*(.bss)
-	}
-
+    . = ALIGN(4K);
+    kernel_end = .;
 }
