@@ -9,24 +9,27 @@
 # Uses an i686-elf cross-compiler when available; otherwise falls back to the
 # host gcc in 32-bit freestanding mode.
 
+NAME := reinhard _os
+
 ifeq ($(shell command -v i686-elf-gcc 2>/dev/null),)
-  CC := gcc -m32 -fno-pie -fno-stack-protector -fcf-protection=none
-  LD := ld -m elf_i386
+CC := gcc -m32 -fno-pie -fno-stack-protector -fcf-protection=none
+LD := ld -m elf_i386
 else
-  CC := i686-elf-gcc
-  LD := i686-elf-ld
+CC := i686-elf-gcc
+LD := i686-elf-ld
 endif
 
 CFLAGS  := -std=gnu11 -ffreestanding -O2 -g -Wall -Wextra -Iinclude \
-           -fno-tree-loop-distribute-patterns
+           -fno-tree-loop-distribute-patterns -MMD -MP
 LDFLAGS := -T linker.ld -nostdlib -z noexecstack
 
 SRC_C := $(shell find src -name '*.c')
 SRC_S := $(shell find src -name '*.s')
 OBJS  := $(patsubst src/%.c,build/%.o,$(SRC_C)) $(patsubst src/%.s,build/%.o,$(SRC_S))
+DEPS  := $(OBJS:.o=.d)
 
-KERNEL := build/reinhard _os.bin
-ISO    := reinhard _os.iso
+KERNEL := build/$(NAME).bin
+ISO    := $(NAME).iso
 
 .PHONY: all run run-iso iso clean
 
@@ -46,7 +49,7 @@ build/%.o: src/%.s
 
 iso: $(KERNEL) grub.cfg
 	mkdir -p build/iso/boot/grub
-	cp $(KERNEL) build/iso/boot/reinhard _os.bin
+	cp $(KERNEL) build/iso/boot/$(NAME).bin
 	cp grub.cfg build/iso/boot/grub/grub.cfg
 	grub-mkrescue -o $(ISO) build/iso
 
@@ -58,3 +61,6 @@ run-iso: iso
 
 clean:
 	rm -rf build $(ISO)
+
+# Header changes now trigger rebuilds of the .c files that include them.
+-include $(DEPS)
