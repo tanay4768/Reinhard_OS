@@ -1,4 +1,4 @@
-/* Akira OS kernel entry point and panic handler. */
+/* Reinhard  OS kernel entry point and panic handler. */
 
 #include "kernel.h"
 

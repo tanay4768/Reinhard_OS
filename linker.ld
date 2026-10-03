@@ -1,4 +1,4 @@
-/* Akira OS linker script: kernel is loaded at 1 MiB. */
+/* Reinhard  OS linker script: kernel is loaded at 1 MiB. */
 
 ENTRY(_start)
 

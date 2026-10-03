@@ -177,7 +177,7 @@ static void render(editor_t *ed)
     scroll_to_cursor(ed);
 
     char title[VGA_WIDTH + 1];
-    ksnprintf(title, sizeof(title), " Akira Notepad - %s%s", ed->path, ed->modified ? " [modified]" : "");
+    ksnprintf(title, sizeof(title), " Reinhard  Notepad - %s%s", ed->path, ed->modified ? " [modified]" : "");
     draw_bar(0, title, "", vga_color(VGA_WHITE, VGA_BLUE));
 
     size_t idx = ed->top;

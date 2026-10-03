@@ -33,7 +33,7 @@ static void print_prompt(void)
     fs_path(fs_cwd(), path, sizeof(path));
 
     vga_set_color(vga_color(VGA_LIGHT_GREEN, VGA_BLACK));
-    kprintf("akira");
+    kprintf("reinhard ");
     vga_set_color(vga_color(VGA_WHITE, VGA_BLACK));
     kprintf(":");
     vga_set_color(vga_color(VGA_LIGHT_CYAN, VGA_BLACK));
@@ -133,7 +133,7 @@ static void execute(char *line)
             return;
         }
     }
-    kprintf("akira: command not found: %s (try 'help')\n", argv[0]);
+    kprintf("reinhard : command not found: %s (try 'help')\n", argv[0]);
 }
 
 void shell_run(void)

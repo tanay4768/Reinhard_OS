@@ -1,4 +1,4 @@
-# Akira OS
+# Reinhard  OS
 
 A small 32-bit x86 operating system written in C and assembly.
 
@@ -33,9 +33,9 @@ Requirements: `i686-elf-gcc` (recommended) **or** a 32-bit-capable host `gcc` + 
 For ISOs also `grub-mkrescue` and `xorriso`.
 
 ```
-make          # build/akira_os.bin
+make          # build/reinhard _os.bin
 make run      # boot straight in QEMU (multiboot, no ISO)
-make iso      # akira_os.iso via GRUB
+make iso      # reinhard _os.iso via GRUB
 make run-iso
 make clean
 ```

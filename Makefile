@@ -1,8 +1,8 @@
-# Akira OS build system.
+# Reinhard  OS build system.
 #
-#   make          build build/akira_os.bin
+#   make          build build/reinhard _os.bin
 #   make run      boot it in QEMU (direct multiboot, no ISO needed)
-#   make iso      build akira_os.iso with GRUB
+#   make iso      build reinhard _os.iso with GRUB
 #   make run-iso  boot the ISO in QEMU
 #   make clean
 #
@@ -25,8 +25,8 @@ SRC_C := $(shell find src -name '*.c')
 SRC_S := $(shell find src -name '*.s')
 OBJS  := $(patsubst src/%.c,build/%.o,$(SRC_C)) $(patsubst src/%.s,build/%.o,$(SRC_S))
 
-KERNEL := build/akira_os.bin
-ISO    := akira_os.iso
+KERNEL := build/reinhard _os.bin
+ISO    := reinhard _os.iso
 
 .PHONY: all run run-iso iso clean
 
@@ -46,7 +46,7 @@ build/%.o: src/%.s
 
 iso: $(KERNEL) grub.cfg
 	mkdir -p build/iso/boot/grub
-	cp $(KERNEL) build/iso/boot/akira_os.bin
+	cp $(KERNEL) build/iso/boot/reinhard _os.bin
 	cp grub.cfg build/iso/boot/grub/grub.cfg
 	grub-mkrescue -o $(ISO) build/iso
 
