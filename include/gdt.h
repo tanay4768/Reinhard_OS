@@ -1,5 +1,5 @@
-#ifndef AKIRA_GDT_H
-#define AKIRA_GDT_H
+#ifndef REINHARD_GDT_H
+#define REINHARD_GDT_H
 
 #define GDT_KERNEL_CODE 0x08
 #define GDT_KERNEL_DATA 0x10

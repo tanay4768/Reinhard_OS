@@ -1,5 +1,5 @@
-#ifndef AKIRA_PAGING_H
-#define AKIRA_PAGING_H
+#ifndef REINHARD_PAGING_H
+#define REINHARD_PAGING_H
 
 #include <stdbool.h>
 #include <stdint.h>

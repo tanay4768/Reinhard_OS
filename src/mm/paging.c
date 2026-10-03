@@ -97,8 +97,11 @@ static void page_fault_handler(registers_t *regs)
     uint32_t addr = read_cr2();
     fault_count++;
 
-    /* Demand paging: first touch of a reserved heap page gets a fresh frame. */
-    if (!(regs->err_code & PF_PRESENT) && heap_contains(addr)) {
+    /* Demand paging: first touch of a reserved heap page gets a fresh frame.
+     * The test is the heap's reserved range, not the allocator's brk: the
+     * faulting store may be the very store that publishes the new brk, so brk
+     * is not a dependable boundary here (see heap_grow). */
+    if (!(regs->err_code & PF_PRESENT) && heap_reserved(addr)) {
         uint32_t page  = ALIGN_DOWN(addr, PAGE_SIZE);
         uint32_t frame = pmm_alloc_frame();
 

@@ -1,15 +1,15 @@
-# Reinhard  OS build system.
+# Reinhard OS build system.
 #
-#   make          build build/reinhard _os.bin
+#   make          build build/reinhard_os.bin
 #   make run      boot it in QEMU (direct multiboot, no ISO needed)
-#   make iso      build reinhard _os.iso with GRUB
+#   make iso      build reinhard_os.iso with GRUB
 #   make run-iso  boot the ISO in QEMU
 #   make clean
 #
 # Uses an i686-elf cross-compiler when available; otherwise falls back to the
 # host gcc in 32-bit freestanding mode.
 
-NAME := reinhard _os
+NAME := reinhard_os
 
 ifeq ($(shell command -v i686-elf-gcc 2>/dev/null),)
 CC := gcc -m32 -fno-pie -fno-stack-protector -fcf-protection=none

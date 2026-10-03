@@ -1,5 +1,5 @@
-#ifndef AKIRA_ISR_H
-#define AKIRA_ISR_H
+#ifndef REINHARD_ISR_H
+#define REINHARD_ISR_H
 
 #include <stdint.h>
 

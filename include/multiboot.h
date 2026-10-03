@@ -1,5 +1,5 @@
-#ifndef AKIRA_MULTIBOOT_H
-#define AKIRA_MULTIBOOT_H
+#ifndef REINHARD_MULTIBOOT_H
+#define REINHARD_MULTIBOOT_H
 
 #include <stdint.h>
 

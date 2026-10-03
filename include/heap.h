@@ -1,5 +1,5 @@
-#ifndef AKIRA_HEAP_H
-#define AKIRA_HEAP_H
+#ifndef REINHARD_HEAP_H
+#define REINHARD_HEAP_H
 
 #include <stdbool.h>
 #include <stddef.h>
@@ -21,7 +21,7 @@ void *kzalloc(size_t size);
 void *krealloc(void *ptr, size_t size);
 void  kfree(void *ptr);
 
-bool  heap_contains(uint32_t addr);
+bool  heap_reserved(uint32_t addr);
 void  heap_stats(heap_stats_t *out);
 
 #endif

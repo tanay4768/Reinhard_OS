@@ -1,5 +1,5 @@
-#ifndef AKIRA_FS_H
-#define AKIRA_FS_H
+#ifndef REINHARD_FS_H
+#define REINHARD_FS_H
 
 #include <stdbool.h>
 #include <stddef.h>

@@ -1,5 +1,5 @@
-#ifndef AKIRA_IO_H
-#define AKIRA_IO_H
+#ifndef REINHARD_IO_H
+#define REINHARD_IO_H
 
 #include <stdint.h>
 
@@ -29,6 +29,12 @@ static inline void io_wait(void)
 /* ---- CPU helpers ---- */
 static inline void cpu_sti(void) { __asm__ volatile("sti" : : : "memory"); }
 static inline void cpu_cli(void) { __asm__ volatile("cli" : : : "memory"); }
+
+/* Stops the compiler from moving memory accesses across this point.
+ * Needed whenever kernel state is published for an *asynchronous* reader:
+ * the page-fault handler inspects kernel memory that the faulting code has not
+ * finished writing, which no amount of in-program reasoning can express. */
+static inline void barrier(void) { __asm__ volatile("" : : : "memory"); }
 
 static inline __attribute__((noreturn)) void cpu_halt_forever(void)
 {

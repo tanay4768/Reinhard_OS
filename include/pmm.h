@@ -1,5 +1,5 @@
-#ifndef AKIRA_PMM_H
-#define AKIRA_PMM_H
+#ifndef REINHARD_PMM_H
+#define REINHARD_PMM_H
 
 #include <stdint.h>
 #include "multiboot.h"

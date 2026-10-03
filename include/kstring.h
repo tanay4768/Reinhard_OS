@@ -1,5 +1,5 @@
-#ifndef AKIRA_KSTRING_H
-#define AKIRA_KSTRING_H
+#ifndef REINHARD_KSTRING_H
+#define REINHARD_KSTRING_H
 
 #include <stdbool.h>
 #include <stddef.h>

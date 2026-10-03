@@ -9,6 +9,7 @@
 
 #include "heap.h"
 
+#include "io.h"
 #include "kernel.h"
 #include "kstring.h"
 
@@ -27,7 +28,10 @@ typedef struct block {
 #define HEADER_SIZE sizeof(block_t)
 
 static block_t *head, *tail;
-static uint32_t brk = KHEAP_START;
+
+/* Published to the page-fault handler, which reads it outside of any call
+ * chain, so it must be reloaded rather than cached in a register. */
+static volatile uint32_t brk = KHEAP_START;
 static size_t   bytes_used;
 
 static inline bool block_is_free(const block_t *b) { return b->flags & FLAG_FREE; }
@@ -44,9 +48,16 @@ static bool heap_grow(size_t min_payload)
     size_t   bytes = ALIGN_UP(min_payload + HEADER_SIZE, PAGE_SIZE);
     uint32_t old   = brk;
 
-    if ((uint64_t)brk + bytes > KHEAP_MAX)
+    if ((uint64_t)old + bytes > KHEAP_MAX)
         return false;
-    brk += (uint32_t)bytes;
+
+    /* Publish brk *before* the first store into the new space below.  That
+     * store is what raises the page fault, and the handler has to see the new
+     * brk to know the address belongs to the heap.  Without the barrier GCC
+     * sinks this store past the header write (store motion), the handler sees
+     * the old brk, and the very first allocation panics the kernel. */
+    brk = old + (uint32_t)bytes;
+    barrier();
 
     if (tail && block_is_free(tail)) {
         tail->size += bytes;
@@ -175,9 +186,9 @@ void *krealloc(void *ptr, size_t size)
     return fresh;
 }
 
-bool heap_contains(uint32_t addr)
+bool heap_reserved(uint32_t addr)
 {
-    return addr >= KHEAP_START && addr < brk;
+    return addr >= KHEAP_START && addr < KHEAP_MAX;
 }
 
 void heap_stats(heap_stats_t *out)

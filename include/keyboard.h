@@ -1,5 +1,5 @@
-#ifndef AKIRA_KEYBOARD_H
-#define AKIRA_KEYBOARD_H
+#ifndef REINHARD_KEYBOARD_H
+#define REINHARD_KEYBOARD_H
 
 /* Printable keys are returned as ASCII; Ctrl+<letter> as 1..26. */
 enum {

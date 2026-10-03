@@ -46,14 +46,14 @@ static int cmd_clear(int argc, char **argv)
 static int cmd_hello(int argc, char **argv)
 {
     UNUSED(argc); UNUSED(argv);
-    kprintf("HI, I am Reinhard  OS\n");
+    kprintf("HI, I am Reinhard OS\n");
     return 0;
 }
 
 static int cmd_about(int argc, char **argv)
 {
     UNUSED(argc); UNUSED(argv);
-    kprintf("Reinhard  OS %s - a 32-bit x86 hobby kernel\n", AKIRA_VERSION);
+    kprintf("Reinhard OS %s - a 32-bit x86 hobby kernel\n", REINHARD_VERSION);
     kprintf("  GDT/IDT/PIC interrupts, PIT timer, PS/2 keyboard\n");
     kprintf("  physical memory manager, paging with demand-paged heap\n");
     kprintf("  RAM filesystem, shell and notepad\n");
@@ -388,7 +388,7 @@ static int cmd_shutdown(int argc, char **argv)
 const command_t shell_commands[] = {
     { "help",     "[command]",       "list commands or show usage",           cmd_help     },
     { "hello",    "",                "greet the user",                        cmd_hello    },
-    { "about",    "",                "about Reinhard  OS",                        cmd_about    },
+    { "about",    "",                "about Reinhard OS",                     cmd_about    },
     { "clear",    "",                "clear the screen",                      cmd_clear    },
     { "echo",     "text [> file]",   "print text, optionally to a file",      cmd_echo     },
     { "ls",       "[path]",          "list directory contents",               cmd_ls       },

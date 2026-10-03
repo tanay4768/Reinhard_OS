@@ -140,7 +140,7 @@ void fs_init(void)
 
     fs_node_t *readme = fs_create("/README.txt", FS_FILE, NULL);
     static const char text[] =
-        "Welcome to Reinhard  OS!\n"
+        "Welcome to Reinhard OS!\n"
         "\n"
         "This is a RAM-backed filesystem. Try:\n"
         "  ls, cd, mkdir, touch, cat, rm\n"

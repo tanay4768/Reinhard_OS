@@ -1,5 +1,5 @@
-#ifndef AKIRA_KPRINTF_H
-#define AKIRA_KPRINTF_H
+#ifndef REINHARD_KPRINTF_H
+#define REINHARD_KPRINTF_H
 
 #include <stddef.h>
 

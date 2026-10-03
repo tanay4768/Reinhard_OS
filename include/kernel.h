@@ -1,11 +1,11 @@
-#ifndef AKIRA_KERNEL_H
-#define AKIRA_KERNEL_H
+#ifndef REINHARD_KERNEL_H
+#define REINHARD_KERNEL_H
 
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 
-#define AKIRA_VERSION "0.2.0"
+#define REINHARD_VERSION "0.2.0"
 
 #define PAGE_SIZE 4096u
 

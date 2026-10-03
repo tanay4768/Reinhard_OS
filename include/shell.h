@@ -1,5 +1,5 @@
-#ifndef AKIRA_SHELL_H
-#define AKIRA_SHELL_H
+#ifndef REINHARD_SHELL_H
+#define REINHARD_SHELL_H
 
 #include <stddef.h>
 

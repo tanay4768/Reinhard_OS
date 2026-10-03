@@ -1,4 +1,4 @@
-/* Reinhard  OS kernel entry point and panic handler. */
+/* Reinhard OS kernel entry point and panic handler. */
 
 #include "kernel.h"
 
@@ -50,13 +50,27 @@ static void boot_step(const char *what)
     kprintf(" ] %s\n", what);
 }
 
+/* "REINHARD" in a 7x5 block font; the version is printed on the middle row. */
 static void print_banner(void)
 {
+    static const char *const art[7] = {
+        "####  ##### ##### #   # #   #   #   ####  #### ",
+        "#   # #       #   ##  # #   #  # #  #   # #   #",
+        "#   # #       #   # # # #   # #   # #   # #   #",
+        "####  ####    #   #  ## ##### #   # ####  #   #",
+        "#   # #       #   #   # #   # ##### #   # #   #",
+        "#   # #       #   #   # #   # #   # #   # #   #",
+        "#   # ##### ##### #   # #   # #   # #   # #### ",
+    };
+
     vga_set_color(vga_color(VGA_LIGHT_CYAN, VGA_BLACK));
-    kprintf("  _       _    _\n");
-    kprintf(" /_\\ | |/ /(_)_ _ __ _\n");
-    kprintf("/ _ \\| ' < | | '_/ _` |\n");
-    kprintf("/_/ \\_\\_|\\_\\|_|_| \\__,_|  OS %s\n\n", AKIRA_VERSION);
+    for (size_t i = 0; i < ARRAY_SIZE(art); i++) {
+        if (i == 3)
+            kprintf("%s   OS %s\n", art[i], REINHARD_VERSION);
+        else
+            kprintf("%s\n", art[i]);
+    }
+    kprintf("\n");
     vga_set_color(vga_color(VGA_LIGHT_GREY, VGA_BLACK));
 }
 

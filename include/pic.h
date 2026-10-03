@@ -1,5 +1,5 @@
-#ifndef AKIRA_PIC_H
-#define AKIRA_PIC_H
+#ifndef REINHARD_PIC_H
+#define REINHARD_PIC_H
 
 #include <stdbool.h>
 #include <stdint.h>

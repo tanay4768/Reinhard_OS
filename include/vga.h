@@ -1,5 +1,5 @@
-#ifndef AKIRA_VGA_H
-#define AKIRA_VGA_H
+#ifndef REINHARD_VGA_H
+#define REINHARD_VGA_H
 
 #include <stddef.h>
 #include <stdint.h>

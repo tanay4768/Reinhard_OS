@@ -1,5 +1,5 @@
-#ifndef AKIRA_TIMER_H
-#define AKIRA_TIMER_H
+#ifndef REINHARD_TIMER_H
+#define REINHARD_TIMER_H
 
 #include <stdint.h>
 
