@@ -32,7 +32,8 @@ static int cmd_help(int argc, char **argv)
     kprintf("Available commands:\n");
     for (size_t i = 0; i < shell_command_count; i++)
         kprintf("  %-10s %s\n", shell_commands[i].name, shell_commands[i].help);
-    kprintf("Tip: Up/Down browse history, Ctrl+L clears the screen.\n");
+    kprintf("Tip: Up/Down browse history, PgUp/PgDn scroll back and forth,\n");
+    kprintf("     Ctrl+L clears the screen.\n");
     return 0;
 }
 

@@ -11,6 +11,7 @@
 #define LINE_MAX     128
 #define ARGV_MAX     16
 #define HISTORY_MAX  16
+#define SCROLL_PAGE  (VGA_HEIGHT - 1)
 
 static char history[HISTORY_MAX][LINE_MAX];
 static int  history_count;
@@ -63,6 +64,19 @@ static void read_line(char *buf)
 
     for (;;) {
         int key = keyboard_getkey();
+
+        /* PgUp / PgDn page through the scrollback.  Any other key returns to the
+         * live prompt first and is then handled normally, so nothing is lost. */
+        if (key == KEY_PGUP) {
+            vga_scroll(SCROLL_PAGE);
+            continue;
+        }
+        if (key == KEY_PGDN) {
+            vga_scroll(-SCROLL_PAGE);
+            continue;
+        }
+        if (vga_scrolled())
+            vga_scroll_reset();
 
         if (key == '\n') {
             vga_putc('\n');

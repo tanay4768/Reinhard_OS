@@ -27,6 +27,7 @@
 void kernel_panic(const char *msg, const registers_t *regs)
 {
     cpu_cli();
+    vga_scroll_reset();          /* never leave the message in the scrollback */
     vga_set_color(vga_color(VGA_WHITE, VGA_RED));
     kprintf("\n*** KERNEL PANIC: %s ***\n", msg);
 
